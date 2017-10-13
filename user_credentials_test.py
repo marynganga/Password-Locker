@@ -90,8 +90,8 @@ class TestCredentials(unittest.TestCase):
 		Test to check if the copy a credential method copies the correct credential
 		'''
 		self.new_credential.save_credentials()
-		Credential.copy_credential(new_credential.site_name)
-		self.assertEqual(self.new_credential,pyperclip.paste())
+		Credential.copy_credential(self.new_credential.site_name)
+		self.assertEqual(str(f"Site Name: {self.new_credential.site_name} - UserName: {self.new_credential.site_name} - Password:  {self.new_credential.password}"),pyperclip.paste())
 
 if __name__ == '__main__':
 	unittest.main(verbosity=2)
