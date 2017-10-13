@@ -39,8 +39,8 @@ class Credential:
 		'''
 		Method that checks if the name and password entered match entries in the users_list
 		'''
-		for user in cls.users_list:
-			if password == user.password:
+		for user in User.users_list:
+			if password == user.password and first_name == user.first_name:
 				return True
 			return False
 
