@@ -75,11 +75,19 @@ class TestCredentials(unittest.TestCase):
 		self.twitter.save_credentials()
 		self.assertListEqual(Credential.display_credentials(),Credential.credentials_list)
 
-	def test_copy_credential(self):
-		'''
-		Test to check if the copy a credential method copies the correct credential
-		'''
+	def test_find_by_site_name(self):
 		self.new_credential.save_credentials()
-		self.assertEqual(self.new_credential,pyperclip.paste())
+		twitter = Credential('Twitter','maryjoe','pswd100')
+		twitter.save_credentials()
+		credential_exists = Credential.find_by_site_name('Twitter')
+		self.assertEqual(credential_exists,twitter)
+
+	# def test_copy_credential(self):
+	# 	'''
+	# 	Test to check if the copy a credential method copies the correct credential
+	# 	'''
+	# 	self.new_credential.save_credentials()
+	# 	self.assertEqual(self.new_credential,pyperclip.paste())
+
 if __name__ == '__main__':
 	unittest.main(verbosity=2)
