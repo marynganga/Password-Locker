@@ -48,3 +48,9 @@ class Credential:
 		# global users_list
 		Credential.credentials_list.append(self)
 	
+	@classmethod
+	def display_credentials(cls):
+		'''
+		Class method to display the list of credentials saved
+		'''
+		return cls.credentials_list	
