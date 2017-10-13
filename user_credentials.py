@@ -3,13 +3,13 @@ import random
 import string
 
 # Global Variables
-# global users_list 
+global users_list 
 class User:
 	'''
 	Class to create user accounts and save their information
 	'''
 	# Class Variables
-	global users_list
+	# global users_list
 	users_list = []
 	def __init__(self,first_name,last_name,password):
 		'''
@@ -40,10 +40,10 @@ class Credential:
 		Method that checks if the name and password entered match entries in the users_list
 		'''
 		for user in cls.users_list:
-			if password = user.password:
+			if password == user.password:
 				return True
 			return False
-			
+
 	def __init__(self,site_name,account_name,password):
 		'''
 		Method to define the properties for each user object will hold.
