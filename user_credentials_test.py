@@ -53,12 +53,17 @@ class TestCredentials(unittest.TestCase):
 
 	def test_save_credentials(self):
 		'''
-		Test to check if the new users info is saved into the users list
+		Test to check if the new credential info is saved into the credentials list
 		'''
 		self.new_credential.save_credentials()
 		self.twitter = Credential('Twitter','maryjoe','pswd100')
 		self.twitter.save_credentials()
 		self.assertEqual(len(Credential.credentials_list),2)
 
+	def test_display_credentials(self):
+		'''
+		Test to check if the display_credentials method, displays the correct credentials.
+		'''
+		self.assertListEqual(Credential.display_credentials(),Credential.credentials_list)
 if __name__ == '__main__':
 	unittest.main(verbosity=2)
