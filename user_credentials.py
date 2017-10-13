@@ -29,6 +29,8 @@ class Credential:
 	'''
 	Class to create  account credentials, generate passwords and save their information
 	'''
+	# Class Variables
+	credentials_list =[]
 	def __init__(self,site_name,account_name,password):
 		'''
 		Method to define the properties for each user object will hold.
