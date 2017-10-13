@@ -41,8 +41,9 @@ class Credential:
 		'''
 		for user in User.users_list:
 			if password == user.password and first_name == user.first_name:
-				return user
-			
+				return user.first_name
+			return False
+
 
 	def __init__(self,user_name,site_name,account_name,password):
 		'''
