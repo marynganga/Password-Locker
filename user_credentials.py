@@ -1,10 +1,10 @@
 import pyperclip
 
-class User():
+class User:
 	'''
 	Class to create user accounts and save their information
 	'''
-	def __init__(self,first_name,second_name,password):
+	def __init__(self,first_name,last_name,password):
 		'''
 		Method to define the properties for each user object will hold.
 		'''
