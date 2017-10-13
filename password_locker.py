@@ -27,7 +27,8 @@ def generate_password():
 	'''
 	Function to generate a password automatically
 	'''
-	User.generate_password()
+	gen_pass = Credential.generate_password()
+	return gen_pass
 
 def create_credential(site_name,user_name,password):
 	'''
@@ -97,7 +98,8 @@ def main():
 								break
 							else:
 								print('Oops! Wrong option entered.')
-
+						save_credential(create_credential(site_name,user_name,password))
+						print(f'Credential Created: Site Name: {site_name} - Username: {user_name} - Password: {password}')
 
 
 

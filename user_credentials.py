@@ -61,13 +61,12 @@ class Credential:
 		# global users_list
 		Credential.credentials_list.append(self)
 	
-	def generate_password(self,size=8, char=string.ascii_uppercase+string.ascii_lowercase+string.digits):
+	def generate_password(size=8, char=string.ascii_uppercase+string.ascii_lowercase+string.digits):
 		'''
 		Function to generate an 8 character password for a credential
 		'''
 		gen_pass=''.join(random.choice(char) for _ in range(size))
-		self.password = gen_pass
-		return self.password
+		return gen_pass
 
 	@classmethod
 	def display_credentials(cls):
@@ -91,5 +90,5 @@ class Credential:
 		Class method that copies a credential's info after the credential's site name is entered
 		'''
 		find_credential = cls.find_by_site_name(site_name)
-		pyperclip.copy(f'Site Name: {find_credential.site_name} - UserName: {find_credential.site_name} - Password:  {find_credential.password}')
+		pyperclip.copy(f'Site Name: {find_credential.site_name} - UserName: {find_credential.user_name} - Password:  {find_credential.password}')
 
