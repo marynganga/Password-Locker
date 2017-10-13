@@ -2,8 +2,6 @@
 import pyperclip
 from user_credentials import User, Credential
 
-# global variables
-global checking_user
 def create_user(fname,lname,password):
 	'''
 	Function to create a new user account
@@ -17,11 +15,6 @@ def save_user(user):
 	'''
 	User.save_user(user)
 
-def generate_password():
-	'''
-	Function to generate a password automatically
-	'''
-	User.generate_password()
 
 def verify_user(first_name,password):
 	'''
@@ -29,10 +22,17 @@ def verify_user(first_name,password):
 	'''
 	checking_user = Credential.check_user(first_name,password)
 	return checking_user
+
+def generate_password():
+	'''
+	Function to generate a password automatically
+	'''
+	User.generate_password()
+
 def main():
 	print('Hello! Welcome to password locker.')
 	while True:
-		print("-"*60)
+		print(" ")
 		print('Use these codes to navigate: ca-Create an Account, li-Log In, ex-Exit')
 		short_code = input('Enter a choice: ').lower().strip()
 		if short_code == 'ex':
@@ -41,36 +41,49 @@ def main():
 
 		elif short_code == 'ca':
 			print("-"*60)
-			print('To create a new account')
-			first_name = input('Enter your first name: ').strip()
-			last_name = input('Enter your last name: ').strip()
-			password = input('Enter your password: ').strip()
+			print('To create a new account:')
+			first_name = input('Enter your first name - ').strip()
+			last_name = input('Enter your last name - ').strip()
+			password = input('Enter your password - ').strip()
 			save_user(create_user(first_name,last_name,password))
 			print(" ")
 			print(f'New Account Created for: {first_name} {last_name} using password: {password}')
 
 		elif short_code == 'li':
 			print("-"*60)
-			print('Enter your account details')
-			first_name = input('Enter your first name: ').strip()
-			password = input('Enter your password: ').strip()
+			print('Enter your account details:')
+			first_name = input('Enter your first name - ').strip()
+			password = input('Enter your password - ').strip()
 			user_exists = verify_user(first_name,password)
 			if user_exists == True:
-				print(f'Welcome {first_name}')
+				print(" ")
+				print(f'Welcome {first_name}. Please choose an option to continue.')
 				while True:
-					print("-"*60)
-					print('Navigation codes: ca-Create a Credential, dc-Display Credentials, ex-Exit')
-					print("-"*60)
+					print(" ")
+					print('Navigation codes: cc-Create a Credential, dc-Display Credentials, ex-Exit')
 					short_code = input('Enter a choice: ').lower().strip()
+					print("-"*60)
 					if short_code == 'ex':
 						print('Goodbye')
 						break
-			
-				# print('Use these codes to choose an option for your password: ep - to enter an existing password, np - to generate a new password automatically')
-				# print("*"*60)
-				# psw_choice = input('Enter an option: ').lower().strip()
-				# if psw_choice == 'ep':
-				# 	password = input('Enter your password: ')
+					elif short_code == 'cc':
+						print('Enter your credential details:')
+						site_name = input('Enter the site\'s name- ').strip()
+						user_name = input('Enter your username - ').strip()
+						while True:
+							print(' ')
+							print('Please choose an option for entering a password: ep-enter existing password, gp-generate a password, ex-exit')
+							psw_choice = input('Enter an option: ').lower().strip()
+							if psw_choice == 'ep':
+								password = input('Enter your password: ').strip()
+								break
+							elif psw_choice == 'gp':
+								password = generate_password()
+								break
+							elif psw_choice == 'ex':
+								break
+							else:
+								print('Oops! Wrong option entered.')
 
 
 
