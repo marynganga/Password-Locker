@@ -1,4 +1,6 @@
 import pyperclip
+import random
+import string
 
 # Global Variables
 global users_list 
@@ -48,6 +50,14 @@ class Credential:
 		# global users_list
 		Credential.credentials_list.append(self)
 	
+	def generate_password(self,size=8, char=string.ascii_uppercase+string.ascii_lowercase+string.digits):
+		'''
+		Function to generate an 8 character password for a credential
+		'''
+		gen_pass=''.join(random.choice(char) for _ in range(size))
+		self.password = gen_pass
+		return self.password
+
 	@classmethod
 	def display_credentials(cls):
 		'''
@@ -71,3 +81,4 @@ class Credential:
 		'''
 		find_credential = cls.find_by_site_name(site_name)
 		pyperclip.copy(f'Site Name: {find_credential.site_name} - UserName: {find_credential.site_name} - Password:  {find_credential.password}')
+
