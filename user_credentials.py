@@ -25,7 +25,6 @@ class User:
 		'''
 		Function to save a newly created user instance
 		'''
-		# global users_list
 		User.users_list.append(self)
 		
 class Credential:
@@ -35,15 +34,15 @@ class Credential:
 	# Class Variables
 	credentials_list =[]
 	@classmethod
-	def check_user(cls,first_name,password):
+	def check_user(cls,password,first_name):
 		'''
 		Method that checks if the name and password entered match entries in the users_list
 		'''
+		current_user = ''
 		for user in User.users_list:
-			if password == user.password and first_name == user.first_name:
-				return user.first_name
-			return False
-
+			if (user.first_name == first_name and user.password == password):
+				current_user = user.first_name
+		return current_user
 
 	def __init__(self,user_name,site_name,account_name,password):
 		'''
