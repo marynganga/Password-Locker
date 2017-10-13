@@ -25,3 +25,16 @@ class User:
 		# global users_list
 		User.users_list.append(self)
 		
+class Credentials:
+	'''
+	Class to create  account credentials, generate passwords and save their information
+	'''
+	def __init__(self,site_name,account_name,password):
+		'''
+		Method to define the properties for each user object will hold.
+		'''
+
+		# instance variables
+		self.site_name = site_name
+		self.account_name = account_name
+		self.password = password
