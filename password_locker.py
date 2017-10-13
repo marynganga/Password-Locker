@@ -43,6 +43,12 @@ def save_credential(credential):
 	'''
 	Credential.save_credentials(credential)
 
+def display_credentials():
+	'''
+	Function to display credentials saved by a user
+	'''
+	return Credential.display_credentials()
+	
 def main():
 	print('Hello! Welcome to password locker.')
 	while True:
@@ -100,6 +106,18 @@ def main():
 								print('Oops! Wrong option entered.')
 						save_credential(create_credential(site_name,user_name,password))
 						print(f'Credential Created: Site Name: {site_name} - Username: {user_name} - Password: {password}')
+					elif short_code == 'dc':
+						if display_credentials():
+							print('Here is a list of all your credentials')
+							for credential in display_credentials():
+								print(f'Site Name: {credential.site_name} - Account Name: {credential.account_name} - Password: {credential.password}')
+								print(' ')
+						else:
+							print(' ')
+							print("You don't seem to have any contacts saved yet")
+							print(' ')
+				
+
 
 
 
