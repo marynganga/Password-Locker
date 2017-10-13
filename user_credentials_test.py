@@ -60,10 +60,26 @@ class TestCredentials(unittest.TestCase):
 		self.twitter.save_credentials()
 		self.assertEqual(len(Credential.credentials_list),2)
 
+	def tearDown(self):
+		'''
+		Function to clear the credentials list after every test
+		'''
+		Credential.credentials_list = []
+
 	def test_display_credentials(self):
 		'''
 		Test to check if the display_credentials method, displays the correct credentials.
 		'''
+		self.new_credential.save_credentials()
+		self.twitter = Credential('Twitter','maryjoe','pswd100')
+		self.twitter.save_credentials()
 		self.assertListEqual(Credential.display_credentials(),Credential.credentials_list)
+
+	def test_copy_credential(self):
+		'''
+		Test to check if the copy a credential method copies the correct credential
+		'''
+		self.new_credential.save_credentials()
+		self.assertEqual(self.new_credential,pyperclip.paste())
 if __name__ == '__main__':
 	unittest.main(verbosity=2)
