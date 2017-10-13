@@ -2,6 +2,8 @@
 import pyperclip
 from user_credentials import User, Credential
 
+# global variables
+global checking_user
 def create_user(fname,lname,password):
 	'''
 	Function to create a new user account
@@ -32,29 +34,44 @@ def main():
 	while True:
 		print("-"*60)
 		print('Use these codes to navigate: ca-Create an Account, li-Log In, ex-Exit')
-		print("-"*60)
 		short_code = input('Enter a choice: ').lower().strip()
 		if short_code == 'ex':
 			print('Goodbye')
 			break
 
 		elif short_code == 'ca':
-			print('To create a new account')
 			print("-"*60)
-			first_name = input('Enter your first name: ')
-			last_name = input('Enter your last name: ')
-			password = input('Enter your password: ')
+			print('To create a new account')
+			first_name = input('Enter your first name: ').strip()
+			last_name = input('Enter your last name: ').strip()
+			password = input('Enter your password: ').strip()
 			save_user(create_user(first_name,last_name,password))
-			print("\n")
+			print(" ")
 			print(f'New Account Created for: {first_name} {last_name} using password: {password}')
 
 		elif short_code == 'li':
-			print('Enter your account details')
 			print("-"*60)
-			first_name = input('Enter your first name: ')
-			password = input('Enter your password: ')
-			verify_user(first_name,password)
-	
+			print('Enter your account details')
+			first_name = input('Enter your first name: ').strip()
+			password = input('Enter your password: ').strip()
+			user_exists = verify_user(first_name,password)
+			if user_exists == True:
+				print(f'Welcome {first_name}')
+				while True:
+					print("-"*60)
+					print('Navigation codes: ca-Create a Credential, dc-Display Credentials, ex-Exit')
+					print("-"*60)
+					short_code = input('Enter a choice: ').lower().strip()
+					if short_code == 'ex':
+						print('Goodbye')
+						break
+			
+				# print('Use these codes to choose an option for your password: ep - to enter an existing password, np - to generate a new password automatically')
+				# print("*"*60)
+				# psw_choice = input('Enter an option: ').lower().strip()
+				# if psw_choice == 'ep':
+				# 	password = input('Enter your password: ')
+
 
 
 
