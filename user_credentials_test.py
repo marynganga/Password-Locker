@@ -46,16 +46,8 @@ class TestCredentials(unittest.TestCase):
 		user2 = User('Ken','Ng\'ang\'a','pswd100')
 		user2.save_user()
 
-		# 	user_credentials_list = []
-		# for credential in cls.credentials_list:
-		# 	if credential.user_name == user_name:
-		# 		user_credentials_list.append(credential)
-		# return user_credentials_list
-		# print(User.users_list[0].first_name + User.users_list[1].first_name)
-
 		for user in User.users_list:
 			if user.first_name == user2.first_name and user.password == user2.password:
-				# print(user.first_name + user.password + user.last_name)
 				current_user = user.first_name
 		return current_user
 
@@ -92,6 +84,7 @@ class TestCredentials(unittest.TestCase):
 	# 	self.twitter = Credential('Twitter','maryjoe','')
 	# 	self.twitter.password = generate_password()
 	# 	self.assertEqual()
+
 	def tearDown(self):
 		'''
 		Function to clear the credentials list after every test
@@ -125,8 +118,15 @@ class TestCredentials(unittest.TestCase):
 		Test to check if the copy a credential method copies the correct credential
 		'''
 		self.new_credential.save_credentials()
+		twitter = Credential('Jane','Twitter','maryjoe','pswd100')
+		twitter.save_credentials()
+		find_credential = None
+		for credential in Credential.user_credentials_list:
+				find_credential =Credential.find_by_site_name(credential.site_name)
+				return pyperclip.copy(find_credential.password)
 		Credential.copy_credential(self.new_credential.site_name)
-		self.assertEqual(str(f"Site Name: {self.new_credential.site_name} - UserName: {self.new_credential.account_name} - Password:  {self.new_credential.password}"),pyperclip.paste())
+		self.assertEqual('pswd100',pyperclip.paste())
+		print(pyperclip.paste())
 
 if __name__ == '__main__':
 	unittest.main(verbosity=2)

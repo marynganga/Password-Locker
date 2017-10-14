@@ -49,6 +49,12 @@ def display_credentials(user_name):
 	'''
 	return Credential.display_credentials(user_name)
 	
+def copy_credential(site_name):
+	'''
+	Function to copy a credentials details to the clipboard
+	'''
+	return Credential.copy_credential(site_name)
+
 def main():
 	print(' ')
 	print('Hello! Welcome to Password Locker.')
@@ -75,7 +81,7 @@ def main():
 			print(' ')
 			print('To login, enter your account details:')
 			user_name = input('Enter your first name - ').strip()
-			password = input('Enter your password - ').strip()
+			password = str(input('Enter your password - '))
 			user_exists = verify_user(user_name,password)
 			if user_exists == user_name:
 				print(" ")
@@ -83,7 +89,7 @@ def main():
 				print(' ')
 				while True:
 					print("-"*60)
-					print('Navigation codes: \n cc-Create a Credential \n dc-Display Credentials \n ex-Exit')
+					print('Navigation codes: \n cc-Create a Credential \n dc-Display Credentials \n copy-Copy Password \n ex-Exit')
 					short_code = input('Enter a choice: ').lower().strip()
 					print("-"*60)
 					if short_code == 'ex':
@@ -128,6 +134,11 @@ def main():
 							print(' ')
 							print("You don't seem to have any credentials saved yet")
 							print(' ')
+					elif short_code == 'copy':
+						print(' ')
+						chosen_site = input('Enter the site name for the credential password to copy: ')
+						copy_credential(chosen_site)
+						print('')
 					else:
 						print('Oops! Wrong option entered. Try again.')
 

@@ -33,8 +33,9 @@ class Credential:
 	'''
 	# Class Variables
 	credentials_list =[]
+	user_credentials_list = []
 	@classmethod
-	def check_user(cls,password,first_name):
+	def check_user(cls,first_name,password):
 		'''
 		Method that checks if the name and password entered match entries in the users_list
 		'''
@@ -96,6 +97,6 @@ class Credential:
 		'''
 		Class method that copies a credential's info after the credential's site name is entered
 		'''
-		find_credential = cls.find_by_site_name(site_name)
-		pyperclip.copy(f'Site Name: {find_credential.site_name} - UserName: {find_credential.account_name} - Password:  {find_credential.password}')
+		find_credential = Credential.find_by_site_name(site_name)
+		return pyperclip.copy(find_credential.password)
 
